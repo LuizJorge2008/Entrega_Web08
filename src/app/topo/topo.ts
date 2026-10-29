@@ -1,10 +1,30 @@
 import { Component } from '@angular/core';
-import { Menu } from '../menu/menu';
 import { BarraBusca } from '../barra-busca/barra-busca';
+import { Cliente } from '../model/cliente';
+
 @Component({
-  imports: [Menu, BarraBusca],
+  imports: [BarraBusca],
   selector: 'app-topo',
   styleUrl: './topo.css',
   templateUrl: './topo.html',
 })
-export class Topo {}
+export class Topo {
+  mensagem : string = "";
+  
+
+  ngOnInit(){
+    let json = localStorage.getItem("cadastro");
+    if(json!=null){
+      let obj:Cliente = new Cliente();
+      obj = JSON.parse(json);
+      this.mensagem = "Ola, "+ obj.nome;
+    }
+  }
+
+  sair(){
+    localStorage.removeItem("cadastro");
+    location.href="./login";
+  }
+
+
+}

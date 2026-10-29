@@ -10,24 +10,24 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './cadastro.html',
 })
 export class Cadastro {
-  mensagem: String="";
-  obj: Cliente = new Cliente();
+  mensagem:String="";
+  obj:Cliente = new Cliente();
 
-  ngOnInit() {
+  ngOnInit(){
     this.carregar();
   }
-  gravar() {
-    this.mensagem = "Seu cadastro foi realizado com sucesso";
+
+  gravar(){
+    this.mensagem = "Cadastro atualizado com sucesso!";
     let json = JSON.stringify(this.obj);
     localStorage.setItem("cadastro", json);
   }
   carregar(){
     this.mensagem = "";
     let json = localStorage.getItem("cadastro");
-    if (json!=null) {
+    if(json != null){
       this.obj = JSON.parse(json);
     }
   }
-  alterarSenha(){}
-  remover(){}
+  mudarSenha(){}
 }
